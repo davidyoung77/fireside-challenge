@@ -5,10 +5,10 @@ The purpose of this api is to support a connect4 game.
 The api has a single endpoint that recieves an array of numbers that represent tokens placed in order in the columns of the connect 4 game.
 
 ## Build
-docker build -t connect4 .
+```docker build -t connect4.```
 
 ## Serve
-docker run -p 8080:8080 -it connect4
+```docker run -p 8080:8080 -it connect4```
 
 ## Deployment instructions
 
@@ -33,8 +33,8 @@ curl --location --request POST 'domain/connect4' \
 --data-raw '[0, 1, 1, 2, 3, 2, 2, 3, 3, 4, 3]'
 ```
 possible response values:
-`Game not over, add another token`
-`WINNER: Player 1`
-`WINNER: Player 2`
-`DRAW`
-`Too many tokens`
+- Game not over, add another token
+- WINNER: Player 1
+- WINNER: Player 2
+- DRAW
+- Too many tokens

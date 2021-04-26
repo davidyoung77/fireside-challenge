@@ -5,7 +5,7 @@ The purpose of this api is to support a connect4 game.
 The api has a single endpoint that recieves an array of numbers that represent tokens placed in order in the columns of the connect 4 game.
 
 ## Build
-```docker build -t connect4.```
+```docker build -t connect4 .```
 
 ## Serve
 ```docker run -p 8080:8080 -it connect4```

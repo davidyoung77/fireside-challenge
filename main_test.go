@@ -44,7 +44,7 @@ func TestGameNotComplete(t *testing.T) {
 }
 
 func TestDiagonalWinPlayer1(t *testing.T) {
-	responseBody, httpStatus := testRequest(t, `[0, 1, 1, 2, 3, 2, 2, 3, 3, 4, 3]`)
+	responseBody, httpStatus := testRequest(t, `[6, 6, 0, 1, 1, 2, 3, 2, 2, 3, 3, 4, 3]`)
 	expected := `WINNER: Player 1`
 
 	if httpStatus != http.StatusOK {
@@ -58,7 +58,7 @@ func TestDiagonalWinPlayer1(t *testing.T) {
 }
 
 func TestVerticalWinPlayer1(t *testing.T) {
-	responseBody, httpStatus := testRequest(t, `[0, 1, 0, 2, 0, 2, 0]`)
+	responseBody, httpStatus := testRequest(t, `[6, 6, 0, 1, 0, 2, 0, 2, 0]`)
 	expected := `WINNER: Player 1`
 
 	if httpStatus != http.StatusOK {
@@ -72,7 +72,7 @@ func TestVerticalWinPlayer1(t *testing.T) {
 }
 
 func TestHorizontalWinPlayer1(t *testing.T) {
-	responseBody, httpStatus := testRequest(t, `[0, 4, 1, 4, 2, 5, 3]`)
+	responseBody, httpStatus := testRequest(t, `[6, 6, 0, 4, 1, 4, 2, 5, 3]`)
 	expected := `WINNER: Player 1`
 
 	if httpStatus != http.StatusOK {

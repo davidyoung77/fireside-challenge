@@ -22,26 +22,37 @@ func newGrid() Grid {
 	}
 }
 
-func addTokenToGrid(column int, turn int) error {
-	for _, row := range grid {
+func addTokensToGrid(tokens Tokens) (int, error) {
+	winner := 0
+
+	for turn, column := range tokens {
+		if winner != 0 {
+			break
+		}
+
 		if column >= 7 {
-			return errors.New(fmt.Sprintf("Column %v doesn't exist, add tokens in columns 0 - 6", column))
+			return winner, errors.New(fmt.Sprintf("Column %v doesn't exist, add tokens in columns 0 - 6", column))
 		}
 
-		if row[column] != 0 {
-			continue
+		for _, row := range grid {
+
+			if row[column] != 0 {
+				continue
+			}
+
+			if turn%2 == 0 {
+				row[column] = 1
+			} else {
+				row[column] = 2
+			}
+
+			break
 		}
 
-		if turn%2 == 0 {
-			row[column] = 1
-		} else {
-			row[column] = 2
-		}
-
-		break
+		winner = checkWin()
 	}
 
-	return nil
+	return winner, nil
 }
 
 func checkWin() int {

@@ -32,21 +32,11 @@ func Connect4Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	winner := 0
+	winner, err := addTokensToGrid(tokens)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
 
-	for turn, column := range tokens {
-		if winner != 0 {
-			break
-		}
-
-		err := addTokenToGrid(column, turn)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-
-			return
-		}
-
-		winner = checkWin()
+		return
 	}
 
 	if winner == 0 && len(tokens) < 42 {

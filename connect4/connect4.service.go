@@ -12,37 +12,34 @@ var game = Game{
 var grid = newGrid()
 
 func newGrid() Grid {
-	return Grid{
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0},
+	var _grid = make([][]int, game.rows)
+	for i := range _grid {
+		_grid[i] = make([]int, game.columns)
 	}
+	return _grid
 }
 
 func addTokensToGrid(tokens Tokens) (int, error) {
 	winner := 0
 
-	for turn, colI := range tokens {
+	for turn, column := range tokens {
 		if winner != 0 {
 			break
 		}
 
-		if colI >= 7 {
-			return winner, errors.New(fmt.Sprintf("Column %v doesn't exist, add tokens in columns 0 - 6", colI))
+		if column >= 7 {
+			return winner, errors.New(fmt.Sprintf("Column %v doesn't exist, add tokens in columns 0 - 6", column))
 		}
 
-		rowI := getRow(colI)
+		rowI := getRow(column)
 
 		if turn%2 == 0 {
-			grid[rowI][colI] = 1
+			grid[rowI][column] = 1
 		} else {
-			grid[rowI][colI] = 2
+			grid[rowI][column] = 2
 		}
 
-		winner = checkWin(rowI, colI)
+		winner = checkWin(rowI, column)
 	}
 
 	return winner, nil

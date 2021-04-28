@@ -26,7 +26,7 @@ func Connect4Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if len(tokens) > 42 {
+	if len(tokens) > game.columns*game.rows {
 		fmt.Fprintf(w, "Too many tokens")
 
 		return
@@ -39,7 +39,7 @@ func Connect4Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if winner == 0 && len(tokens) < 42 {
+	if winner == 0 && len(tokens) < game.columns*game.rows {
 		fmt.Fprintf(w, "Game not over, add another token")
 
 		return
